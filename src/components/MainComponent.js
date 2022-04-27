@@ -9,6 +9,7 @@ import About from './AboutComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { postComment, fetchCampsites, fetchComments, fetchPromotions } from '../redux/ActionCreators';
 const mapStateToProps = state => {
     return {
@@ -62,6 +63,8 @@ class Main extends Component {
         return (
             <div>
                 <Header/>
+                <TransitionGroup>
+                <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
                 <Switch>
                     <Route path="/home" component={HomePage}/>
                     <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
@@ -71,7 +74,8 @@ class Main extends Component {
                         <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
                     <Redirect to="/home"/>
                 </Switch>
-                {/*<CampsiteInfo campsite={this.props.campsites.filter(campsite => campsite.id === this.props.selectedCampsite)[0]} />*/}
+                </CSSTransition>
+                </TransitionGroup>
                 <Footer/>
             </div>
         );
