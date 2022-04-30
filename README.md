@@ -1,1 +1,1 @@
-A work in progress version of our NuCamp React.js project!
+<h1> Nucamp's Capstone Project for React.js</h1>
